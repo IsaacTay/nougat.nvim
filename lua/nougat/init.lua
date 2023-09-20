@@ -18,7 +18,7 @@ function M.enable()
       local file_path = vim.api.nvim_buf_get_name(buf_id)
       utils.set_lines(buf_id, 0, -1, { "PLACEHOLDER TEXT: Will be replaced once nougat completes", "Nougat log:" })
       local first_line = 0
-      local shell_fn = { "nougat", "--markdown", file_path }
+      local shell_fn = vim.list_extend({ config.options.cli.cmd, file_path }, config.options.cli.additional_args)
       vim.fn.jobstart(shell_fn, {
         on_stdout = function(_, data)
           if data then

@@ -9,9 +9,9 @@ function M.remove_cr(lines)
   return lines
 end
 
-function M.set_lines(buf, start, stop, lines)
+function M.set_lines(buf_id, start, stop, lines)
   vim.bo[buf_id].modifiable = true
-  vim.api.nvim_buf_set_lines(buf, start, stop, false, lines)
+  vim.api.nvim_buf_set_lines(buf_id, start, stop, false, lines)
   vim.bo[buf_id].modifiable = false
   vim.bo[buf_id].modified = false
 end

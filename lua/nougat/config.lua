@@ -2,6 +2,10 @@ local M = {}
 
 
 local defaults = {
+  cli = {
+    cmd = "nougat",
+    additional_args = {"--markdown"},
+  }
 }
 
 M.options = defaults
