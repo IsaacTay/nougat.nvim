@@ -5,6 +5,9 @@ local defaults = {
   cli = {
     cmd = "nougat",
     additional_args = {"--markdown"},
+  },
+  api = {
+    url = "http://localhost:8503"
   }
 }
 

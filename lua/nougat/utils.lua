@@ -1,6 +1,14 @@
 local M = {}
 
-function M.remove_cr(lines)
+function M.format(lines, api)
+  if lines[#lines] == "" then
+    table.remove(lines)
+  end
+  if api and #lines > 0 then
+    lines = table.concat(lines)
+    lines = vim.split(vim.json.decode(lines), "\n")
+    return lines
+  end
   for i, line in ipairs(lines) do
     if line:sub(-1, -1) == "\r" then -- To remove carriage return for windows
       lines[i] = line:sub(1, -2)
