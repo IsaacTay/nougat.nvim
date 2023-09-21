@@ -10,6 +10,10 @@ local NOUGAT_AUGROUP = vim.api.nvim_create_augroup("nougat", { clear = true })
 
 function M.enable()
   M.enabled = true
+  if not (config.options.cli or config.options.api) then
+    vim.notify("No cli or api specified", "error", { title = "Nougat" })
+    return
+  end
   vim.api.nvim_create_autocmd("BufReadCmd", {
     group = NOUGAT_AUGROUP,
     pattern = "*.pdf",
@@ -38,13 +42,13 @@ function M.enable()
       })
     end
   })
-  print("Nougat enabled")
+  vim.notify("Nougat enabled", "info", { title = "Nougat" })
 end
 
 function M.disable()
   M.enabled = false
   vim.api.nvim_clear_autocmds({ group = NOUGAT_AUGROUP })
-  print("Nougat disabled")
+  vim.notify("Nougat disabled", "info", { title = "Nougat" })
 end
 
 function M.toggle()
